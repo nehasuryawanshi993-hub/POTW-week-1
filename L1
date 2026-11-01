@@ -1,0 +1,52 @@
+class Solution {
+
+    //1051. Height checker
+    //time complexity=O(nlogn)
+    public int heightChecker(int[] heights) {
+        int cnt=0;
+        int n=heights.length;
+        int[] arr=heights.clone();
+        Arrays.sort(arr);
+        for(int i=0;i<n;i++){
+            System.out.print(arr[i]);
+        }
+for(int i=0;i<n;i++){
+    if(arr[i]!=heights[i]){
+        cnt++;
+    }
+}
+return cnt;
+    }
+}
+
+//2.Successful Pairs of Spells and Potions
+class Solution {
+
+    //ti,e complexity=O(nlogn)
+    public int[] successfulPairs(int[] spells, int[] potions, long success) {
+        int n=spells.length;
+        int m=potions.length;
+        int[] ans=new int[n];
+        
+        Arrays.sort(potions);
+        for(int i=0;i<n;i++){
+            int low=0;
+        int high=m-1;
+            int cnt=0;
+           while(low<=high){
+            int mid=low+(high-low)/2;
+                if((long)spells[i]*potions[mid]>=success){
+                    cnt=0;
+                    cnt+=(m-mid);
+               high=mid-1;
+                }
+                else{
+                    low=mid+1;
+                }
+            }
+            
+            ans[i]=cnt;
+        }
+        return ans;
+    }
+}
